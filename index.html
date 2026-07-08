@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For My Beautiful Love ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -15,14 +15,38 @@ box-sizing:border-box;
 font-family:'Poppins',sans-serif;
 }
 
+:root{
+--pink-deep:#e0447e;
+--pink-mid:#ff6fa5;
+--pink-soft:#ffb6c9;
+--pink-pale:#ffe3ec;
+--blush:#fff0f4;
+--gold:#ffd9e6;
+}
+
 body{
 min-height:100vh;
 overflow-x:hidden;
-background:linear-gradient(135deg,#ff7eb3,#ff758c,#ff9a9e);
+background:
+radial-gradient(circle at 15% 20%, rgba(255,255,255,.35), transparent 40%),
+radial-gradient(circle at 85% 80%, rgba(255,255,255,.25), transparent 45%),
+linear-gradient(135deg,#ffb6c9,#ff6fa5 45%,#e0447e 100%);
 display:flex;
 justify-content:center;
 align-items:center;
 color:white;
+position:relative;
+}
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background-image:radial-gradient(rgba(255,255,255,.5) 1px, transparent 1px);
+background-size:26px 26px;
+opacity:.25;
+pointer-events:none;
+z-index:0;
 }
 
 .container{
@@ -39,16 +63,17 @@ margin:40px 0;
 font-size:130px;
 cursor:pointer;
 transition:.4s;
-animation:float 2s ease-in-out infinite;
+animation:float 2.4s ease-in-out infinite;
+filter:drop-shadow(0 10px 20px rgba(224,68,126,.45));
 }
 
 .envelope:hover{
-transform:scale(1.1);
+transform:scale(1.1) rotate(-3deg);
 }
 
 @keyframes float{
 0%,100%{transform:translateY(0);}
-50%{transform:translateY(-10px);}
+50%{transform:translateY(-12px);}
 }
 
 .hidden{
@@ -57,23 +82,54 @@ display:none;
 
 .letter{
 margin-top:20px;
-padding:30px;
-background:rgba(255,255,255,.15);
-backdrop-filter:blur(15px);
-border-radius:25px;
-box-shadow:0 15px 40px rgba(0,0,0,.2);
+padding:36px 32px;
+background:rgba(255,255,255,.16);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+border-radius:28px;
+border:1px solid rgba(255,255,255,.35);
+box-shadow:0 20px 50px rgba(140,20,70,.35);
 min-height:320px;
+position:relative;
+}
+
+.letter::before{
+content:"❀";
+position:absolute;
+top:-22px;
+left:50%;
+transform:translateX(-50%);
+font-size:34px;
+background:var(--pink-mid);
+width:52px;
+height:52px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 8px 18px rgba(140,20,70,.4);
+border:3px solid white;
 }
 
 h1{
 font-family:"Dancing Script",cursive;
-font-size:52px;
-margin-bottom:20px;
+font-size:54px;
+margin-bottom:6px;
+text-shadow:0 4px 14px rgba(140,20,70,.35);
+}
+
+.subtitle{
+font-size:14px;
+letter-spacing:3px;
+text-transform:uppercase;
+opacity:.85;
+margin-bottom:18px;
+font-weight:500;
 }
 
 #message{
-font-size:19px;
-line-height:1.8;
+font-size:18.5px;
+line-height:1.85;
 white-space:pre-wrap;
 min-height:220px;
 text-align:left;
@@ -85,30 +141,42 @@ padding:15px 35px;
 border:none;
 border-radius:50px;
 cursor:pointer;
-font-size:18px;
-font-weight:bold;
+font-size:17px;
+font-weight:700;
 transition:.3s;
+font-family:'Poppins',sans-serif;
 }
 
-#yes{
+#yes, .continueBtn, .askYes{
 background:white;
-color:#ff3b7a;
+color:var(--pink-deep);
+box-shadow:0 8px 20px rgba(140,20,70,.3);
 }
 
-#yes:hover{
-transform:scale(1.1);
+#yes:hover, .continueBtn:hover, .askYes:hover{
+transform:scale(1.08);
+box-shadow:0 12px 26px rgba(140,20,70,.4);
 }
 
-#no{
-background:#ff3b7a;
+#no, .askNo{
+background:var(--pink-deep);
 color:white;
 position:relative;
+box-shadow:0 8px 20px rgba(140,20,70,.3);
+}
+
+.btnRow{
+display:flex;
+gap:16px;
+justify-content:center;
+flex-wrap:wrap;
 }
 
 .counter{
 margin-top:25px;
-font-size:18px;
+font-size:16.5px;
 font-weight:600;
+line-height:1.6;
 }
 
 .heart{
@@ -117,6 +185,7 @@ top:-50px;
 font-size:24px;
 animation:fall linear forwards;
 pointer-events:none;
+z-index:5;
 }
 
 @keyframes fall{
@@ -132,10 +201,10 @@ height:220px;
 border-radius:50%;
 object-fit:cover;
 object-position:center 30%;
-border:5px solid white;
-margin:20px auto;
+border:6px solid white;
+margin:10px auto 20px;
 display:block;
-box-shadow:0 10px 25px rgba(0,0,0,.3);
+box-shadow:0 12px 28px rgba(140,20,70,.4);
 }
 
 .musicBtn{
@@ -143,18 +212,18 @@ position:fixed;
 top:20px;
 right:20px;
 background:white;
-color:#ff3b7a;
+color:var(--pink-deep);
 padding:12px 18px;
 border-radius:50px;
 cursor:pointer;
 font-weight:bold;
 z-index:20;
+box-shadow:0 8px 18px rgba(140,20,70,.3);
+transition:.3s;
 }
 
-.songNote{
-font-size:14px;
-opacity:.85;
-margin-top:8px;
+.musicBtn:hover{
+transform:scale(1.06);
 }
 
 canvas{
@@ -162,6 +231,7 @@ position:fixed;
 left:0;
 top:0;
 pointer-events:none;
+z-index:4;
 }
 
 .bigMessage{
@@ -171,24 +241,110 @@ left:0;
 width:100vw;
 height:100vh;
 display:none;
+flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-background:rgba(255,60,120,.85);
+background:rgba(224,68,126,.92);
 z-index:100;
-padding:20px;
+padding:30px;
+gap:30px;
 }
 
 .bigMessage span{
 font-family:"Dancing Script",cursive;
-font-size:60px;
+font-size:58px;
 color:white;
 line-height:1.3;
+text-shadow:0 6px 20px rgba(0,0,0,.15);
+}
+
+.continueBtn{
+padding:14px 32px;
+font-size:16px;
+opacity:0;
+animation:popIn .6s ease forwards;
+animation-delay:.4s;
+}
+
+@keyframes popIn{
+from{opacity:0;transform:translateY(15px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+.secondLetter{
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+display:none;
+justify-content:center;
+align-items:center;
+z-index:110;
+padding:20px;
+background:linear-gradient(135deg,#ffb6c9,#ff6fa5 45%,#e0447e 100%);
+overflow-y:auto;
+}
+
+.secondBox{
+max-width:680px;
+width:100%;
+background:rgba(255,255,255,.16);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+border-radius:28px;
+border:1px solid rgba(255,255,255,.35);
+box-shadow:0 20px 50px rgba(140,20,70,.35);
+padding:36px 32px;
+color:white;
+margin:40px 0;
+position:relative;
+}
+
+.secondBox::before{
+content:"❀";
+position:absolute;
+top:-22px;
+left:50%;
+transform:translateX(-50%);
+font-size:34px;
+background:var(--pink-mid);
+width:52px;
+height:52px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 8px 18px rgba(140,20,70,.4);
+border:3px solid white;
+}
+
+#message2{
+font-size:18.5px;
+line-height:1.85;
+white-space:pre-wrap;
+min-height:120px;
+text-align:left;
+}
+
+.askRow{
+display:none;
+gap:16px;
+justify-content:center;
+margin-top:22px;
+flex-wrap:wrap;
 }
 
 @media (max-width:600px){
 .bigMessage span{
-font-size:40px;
+font-size:36px;
+}
+h1{
+font-size:42px;
+}
+#message, #message2{
+font-size:16.5px;
 }
 }
 </style>
@@ -198,7 +354,7 @@ font-size:40px;
 
 <canvas id="canvas"></canvas>
 
-<div class="musicBtn" onclick="toggleMusic()">🎵 Tahanan</div>
+<div class="musicBtn" onclick="toggleMusic()">🎵 My Tahanan</div>
 
 <div class="container">
 
@@ -209,16 +365,19 @@ font-size:40px;
 
 <div class="letter hidden" id="letter">
 
-  <img class="photo" src="couple/couple.jpg" alt="Our photo together">
+<img class="photo" src="couple/couple.jpg" alt="Our photo together">
 
 <h1>My Love ❤️</h1>
+<div class="subtitle">8 Months & Counting</div>
 
 <div id="message"></div>
 
 <div class="counter" id="counter"></div>
 
+<div class="btnRow">
 <button id="yes">Yes, Forever ❤️</button>
 <button id="no">No 😅</button>
+</div>
 
 </div>
 
@@ -226,9 +385,21 @@ font-size:40px;
 
 <div class="bigMessage" id="bigMessage">
 <span id="bigMessageText"></span>
+<button class="continueBtn" id="continueBtn">Continue ➜</button>
 </div>
 
-<!-- 
+<div class="secondLetter" id="secondLetter">
+<div class="secondBox">
+<h1 style="font-size:44px;">One More Thing 🌸</h1>
+<div id="message2"></div>
+<div class="askRow" id="askRow">
+<button class="askYes" id="askYes">Yes 🥹</button>
+<button class="askNo" id="askNo">No 😳</button>
+</div>
+</div>
+</div>
+
+<!--
   Add your own "Tahanan" audio file here.
   Since this is copyrighted music, add your own mp3 link/file, e.g.:
   <source src="tahanan.mp3">
@@ -242,37 +413,25 @@ font-size:40px;
 
 const text=`My Love,
 
-
 First, thank you for everything you do — big or small, I notice it, and I appreciate every bit of it. More than anything, I'm grateful for you being in my life, for the love you give me, and for the happiness you bring to my everyday.
-
-
 
 I still can't believe how lucky I am. It feels like every prayer I've said has been answered, because everything I've ever dreamed of is standing right in front of me. Your laugh, the way you carry yourself, the way you love and take care of me — I love all of it, all of you, inside and out. I admire you completely, and I'll keep loving you in every way I know how.
 
-
-
 Thank you for always treating me right — not just through the food, the shoes, the gifts you spoil me with, but for something so much bigger than that: your love, all of it, given so freely and so honestly. That's the part I hold onto the most. Things come and go, but the way you love me stays with me every single day.
-
-
 
 And it's the little things too — like how you sit through anime and K-dramas with me even though Barbie is way more your speed. I know that's not really "your taste," but you still show up for it because it makes me happy. That means more to me than you know.
 
 I thank God every day for you — for the time you give me, for choosing to watch my shows with me, for making my days lighter and happier just by talking to me.
 
-
-
 Thank you for these 8 months, love. Every date, every quiet night in, every random conversation — I regret none of it. You already have a permanent place in my heart, no matter what life throws at us. I love you more than words can really capture, and I hope one day we look back on all of this and smile, knowing we chose each other through everything.
 
 Don't be too hard on yourself while chasing your dreams — I know you'll get there. I'm praying for every good thing to come your way, and for every beautiful memory along the path. Just keep going, and wait for me — our future is going to be a bright one, and we'll build our direction together.
-
-
 
 I will always cherish you, support you, and appreciate every part of who you are. All I want is a lifetime with you — building memories, facing challenges side by side, and growing together, loving each other more with every day that passes.
 
 I'm wishing you nothing but happiness, success, and every good thing life has to offer.
 
-My future nurse, I am so, so proud of you. And I love you — today, at 8 months, and every day after. ❤️
-❤️`;
+My future nurse, I am so, so proud of you. And I love you — today, at 8 months, and every day after. ❤️`;
 
 const envelope=document.getElementById("envelope");
 const letter=document.getElementById("letter");
@@ -281,25 +440,28 @@ const message=document.getElementById("message");
 envelope.onclick=()=>{
 envelope.style.display="none";
 letter.classList.remove("hidden");
-typeWriter();
+typeWriter(message,text,35);
 setInterval(createHeart,180);
 fireworks();
 };
 
-function typeWriter(){
+function typeWriter(el,str,speed,onDone){
 let i=0;
+el.innerHTML="";
 const timer=setInterval(()=>{
-message.innerHTML+=text.charAt(i);
+el.innerHTML+=str.charAt(i);
 i++;
-if(i>=text.length)
+if(i>=str.length){
 clearInterval(timer);
-},35);
+if(onDone) onDone();
+}
+},speed);
 }
 
 function createHeart(){
 const heart=document.createElement("div");
 heart.className="heart";
-heart.innerHTML=["❤️","🌸","💖","🌹"][Math.floor(Math.random()*4)];
+heart.innerHTML=["❤️","🌸","💖","🌹","💗"][Math.floor(Math.random()*5)];
 heart.style.left=Math.random()*100+"vw";
 heart.style.animationDuration=3+Math.random()*3+"s";
 heart.style.fontSize=20+Math.random()*30+"px";
@@ -324,12 +486,24 @@ document.getElementById("counter").innerHTML=
 setInterval(updateCounter,1000);
 updateCounter();
 
-const no=document.getElementById("no");
-no.addEventListener("mouseover",()=>{
+function dodgeSetup(btn){
+btn.addEventListener("mouseover",()=>{
 const x=Math.random()*300-150;
 const y=Math.random()*200-100;
-no.style.transform=`translate(${x}px,${y}px)`;
+btn.style.transform=`translate(${x}px,${y}px)`;
 });
+btn.addEventListener("touchstart",(e)=>{
+e.preventDefault();
+const x=Math.random()*200-100;
+const y=Math.random()*150-75;
+btn.style.transform=`translate(${x}px,${y}px)`;
+});
+}
+
+const no=document.getElementById("no");
+dodgeSetup(no);
+
+const continueBtn=document.getElementById("continueBtn");
 
 document.getElementById("yes").onclick=()=>{
 
@@ -338,20 +512,77 @@ const bigMessageText=document.getElementById("bigMessageText");
 const finalText="okay, sinasagot na kita ❤️";
 
 bigMessage.style.display="flex";
+continueBtn.style.display="none";
 bigMessageText.innerHTML="";
 
-let i=0;
-const timer=setInterval(()=>{
-bigMessageText.innerHTML+=finalText.charAt(i);
-i++;
-if(i>=finalText.length){
-clearInterval(timer);
-}
-},80);
+typeWriter(bigMessageText,finalText,80,()=>{
+continueBtn.style.display="inline-block";
+});
 
 fireworks();
 
 };
+
+continueBtn.onclick=()=>{
+document.getElementById("bigMessage").style.display="none";
+const secondLetter=document.getElementById("secondLetter");
+secondLetter.style.display="flex";
+
+const part1=`Happy 1 yr rin sa atin kasi umabot tayo rito, kahit na minsan ay hindi tayo nagkakaintindihan. Pero ang mahalaga, pinipili pa rin natin ang isa't isa. Hopefully maging maayos ang relationship natin. Naaalala mo pa ba last year, yung nagpapa-pacute ka pa sa akin, yes or no?`;
+
+const part2=`
+
+Naaalala ko pa yung time na sobrang kulit natin at lagi tayong masaya sa room. Well, kahit naman ngayon, hindi na nga lang sa room kundi tuwing magkasama sa kahit saan na lang.
+
+Ngayon, hindi na tayo classmate, pero hindi ako masyadong abala or nag-aalangan kasi may tiwala naman ako sa'yo at sure akong aabot tayo sa dulo ng walang iniisip na negatibo.
+
+Na-miss ko memories natin, lalo na yung mga gala natin sa Nuvali, moa, Alabang, fp, cabs, or kung kahit saan pa man tayo mapadpad, palagi naman tayong masaya sa kung saan man tayo pumupunta.
+
+Palagi kong pagpe-pray na sana umabot tayo hanggang dulo at maging healthy tayo, malayo sana tayo sa mga bagay na magpapahirap sa atin, pati sa parents rin natin. Siyempre, mahalaga sila sa atin. Hindi lang naman tayo ang dapat maging healthy; dapat mama mo at mama ko rin, and also for our relatives.
+
+sana matupad pangarap mong maging nurse sa ibang bansa at maging mayaman, kasi tayo ang pag asa ng mahirap diba a yeah PANIS HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAH
+
+iloveyousomuch lovelove super mahal kita sobra pa sa sobra ❤️`;
+
+const message2=document.getElementById("message2");
+const askRow=document.getElementById("askRow");
+
+typeWriter(message2,part1,32,()=>{
+askRow.style.display="flex";
+});
+
+const askYes=document.getElementById("askYes");
+const askNo=document.getElementById("askNo");
+dodgeSetup(askNo);
+
+askYes.onclick=()=>{
+askRow.style.display="none";
+const fullText=part1+part2;
+typeWriterFrom(message2,fullText,28,part1.length);
+createHeartBurst();
+};
+
+};
+
+// continues a typewriter effect from a given character offset (used so the
+// first part of a message isn't retyped when revealing the rest of it)
+function typeWriterFrom(el,str,speed,startIndex,onDone){
+let i=startIndex;
+const timer=setInterval(()=>{
+el.innerHTML=str.substring(0,i+1);
+i++;
+if(i>=str.length){
+clearInterval(timer);
+if(onDone) onDone();
+}
+},speed);
+}
+
+function createHeartBurst(){
+for(let k=0;k<25;k++){
+setTimeout(createHeart,k*40);
+}
+}
 
 const music=document.getElementById("music");
 function toggleMusic(){
@@ -386,7 +617,7 @@ ctx.clearRect(0,0,canvas.width,canvas.height);
 particles.forEach((p,index)=>{
 ctx.beginPath();
 ctx.arc(p.x,p.y,3,0,Math.PI*2);
-ctx.fillStyle=`hsl(${Math.random()*360},100%,70%)`;
+ctx.fillStyle=`hsl(${330+Math.random()*40},100%,75%)`;
 ctx.fill();
 p.x+=p.vx;
 p.y+=p.vy;
